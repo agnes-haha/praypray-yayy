@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doa Rosario & Novena</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF6FA;--bg2:#EAF4FD;--card:#FFFFFF;--ink:#4E3F63;--muted:#85779A;--line:#EBDDF3;
+--pink:#F9CADB;--pink-d:#EE98BA;--yellow:#FFEFB0;--yellow-d:#F5CF55;--blue:#C6E2F8;--blue-d:#82B9E8;--thread:#D6C5E8;--tl:90%;--dl:70%;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241B33;--bg2:#1B2433;--card:#33264A;--ink:#F6EAFB;--muted:#BCAAD2;--line:#4A3B66;--thread:#6B5A8C;--tl:30%;--dl:66%}}
+:root[data-theme="dark"]{--bg:#241B33;--bg2:#1B2433;--card:#33264A;--ink:#F6EAFB;--muted:#BCAAD2;--line:#4A3B66;--thread:#6B5A8C;--tl:30%;--dl:66%}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));background-color:var(--bg);color:var(--ink);font:500 16px/1.55 Nunito,system-ui,sans-serif;min-height:100%;text-align:left}
+.top{padding:16px 20px 0}
+h1{font:600 30px/1.1 Fraunces,Georgia,serif;margin:0 0 2px}
+.sub{color:var(--muted);font-size:14px;margin:0}
+.tabs,.chips{display:flex;gap:8px;flex-wrap:wrap}
+.tabs{margin-top:12px}
+.tab,.chip{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 14px;font:700 14px Nunito,sans-serif;cursor:pointer}
+.tab[aria-pressed=true]{background:var(--blue);border-color:var(--blue-d);color:#4E3F63}
+.chip{padding:6px 12px;font-size:13px}
+.chip[aria-pressed=true]{background:var(--pink);border-color:var(--pink-d);color:#4E3F63}
+button:focus-visible,summary:focus-visible,input:focus-visible,[data-b]:focus-visible{outline:3px solid var(--blue-d);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px;padding:14px 20px 0;align-items:start}
+.left,.right{display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:559px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:24px;padding:14px;border:2px solid var(--line)}
+svg{display:block;width:100%;max-height:62vh}
+[data-b]{cursor:pointer}
+.halo{animation:pulse 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{50%{transform:scale(1.25);opacity:.35}}
+@keyframes pop{from{transform:scale(.92);opacity:0}}
+@media (prefers-reduced-motion:reduce){.halo,.msg{animation:none}}
+.tot{color:var(--muted);font-size:13px;margin-top:8px}
+.beads{display:grid;gap:7px}
+.beads.g10{grid-template-columns:repeat(10,1fr)}
+.beads.fl{display:flex;flex-wrap:wrap;gap:9px}
+.bd{aspect-ratio:1;border-radius:50%;border:2px solid hsl(var(--h) 60% 64%);background:hsl(var(--h) 80% var(--tl));color:#4E3F63;font:800 11px Nunito,sans-serif;cursor:pointer;padding:0;min-width:0}
+:root[data-theme="dark"] .bd:not(.done),.bd:not(.done){color:var(--ink)}
+.bd.done{background:hsl(var(--h) 72% var(--dl));color:#4E3F63}
+.bd.cur{box-shadow:0 0 0 3px var(--card),0 0 0 6px var(--blue-d);transform:scale(1.12)}
+.beads.fl .bd{width:36px;font-size:12px}
+.msg{background:var(--yellow);color:#4E3F63;border:2px solid var(--yellow-d);border-radius:18px;padding:12px 16px;font-weight:800;animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+.msg span{display:block;font-weight:500;font-size:14px}
+.msg.fin{background:var(--pink);border-color:var(--pink-d);font-size:18px}
+.event{background:var(--yellow);color:#4E3F63;border-radius:16px;padding:10px 14px;font-weight:700;margin-bottom:10px}
+.event span{display:block;font-weight:500;font-size:13px}
+h2{font:600 22px/1.2 Fraunces,Georgia,serif;margin:0 0 4px}
+h3{font:600 17px Fraunces,Georgia,serif;margin:0 0 8px}
+.prayer p{margin:8px 0;font-family:Fraunces,Georgia,serif;font-size:17px;line-height:1.65;text-align:justify;text-align-last:left;hyphens:auto}
+.prayer b{font-family:Nunito,sans-serif;font-size:13px;color:var(--muted)}
+.after{border-top:2px dashed var(--line);margin-top:12px;padding-top:6px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+ol button{width:100%;text-align:left;border:2px solid transparent;background:transparent;color:var(--ink);padding:8px 10px;border-radius:14px;font:500 15px Nunito,sans-serif;cursor:pointer;display:flex;gap:10px;align-items:center}
+ol button i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#4E3F63;display:grid;place-items:center;font:800 13px Nunito;font-style:normal}
+ol button.on{background:var(--yellow);color:#4E3F63;border-color:var(--yellow-d)}
+ol button.on i{background:var(--yellow-d)}
+.cfg label{font-weight:800;font-size:14px;display:block;margin:12px 0 6px}
+.row{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.row input{width:90px;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);font:800 18px Nunito,sans-serif;padding:6px 10px}
+.hint{color:var(--muted);font-size:13px;margin:8px 0 0}
+details summary{cursor:pointer;font-weight:800}
+details h3{margin-top:14px}
+details p{font:400 15px/1.6 Fraunces,serif;margin:4px 0;color:var(--muted);text-align:justify;text-align-last:left}
+.timer{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:12px;padding:10px 14px;background:var(--card);border:2px solid var(--line);border-radius:20px;width:fit-content;max-width:100%}
+.time{font:600 30px/1 Fraunces,Georgia,serif;font-variant-numeric:tabular-nums;min-width:4.2ch}
+.timer input[type=number]{width:64px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:800 15px Nunito,sans-serif;padding:4px 8px}
+.timer label{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.timer .go{background:var(--yellow);border-color:var(--yellow-d);color:#4E3F63}
+.bar{position:sticky;bottom:0;margin-top:18px;padding:10px 20px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(0deg,var(--bg2) 72%,transparent);display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+#prev{justify-self:start}#reset{justify-self:end}
+.side{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:10px 16px;font:700 14px Nunito,sans-serif;cursor:pointer}
+.side:disabled{opacity:.45}
+.big{width:112px;height:112px;border-radius:50%;border:6px solid var(--yellow);background:var(--pink);color:#4E3F63;box-shadow:0 0 0 4px var(--blue),0 8px 18px rgba(130,185,232,.45);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;font-family:Nunito,sans-serif;transition:transform .12s;padding:0 6px}
+.big:active{transform:scale(.93)}
+.big .n{font:600 34px Fraunces,serif}
+.big .l{font-weight:800;font-size:12px}
+.big .m{font-size:11px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Doa Rosario &amp; Novena</h1>
+  <p class="sub" id="day"></p>
+  <div class="tabs" id="tabs" role="group" aria-label="Pilih doa"></div>
+  <div class="timer" id="timer">
+    <span class="time" id="tm" role="timer" aria-label="Waktu doa">00:00</span>
+    <button class="chip go" id="tgo">Mulai</button>
+    <button class="chip" id="trs">Reset</button>
+    <div class="chips" role="group" aria-label="Jenis timer"><button class="chip" data-tm="up" aria-pressed="true">Hitung naik</button><button class="chip" data-tm="down" aria-pressed="false">Hitung mundur</button></div>
+    <span id="tset" hidden><input id="tmin" type="number" min="1" max="180" value="10" inputmode="numeric" aria-label="Menit"> <span class="hint">menit</span></span>
+    <label><input type="checkbox" id="tauto" checked> Mulai otomatis saat manik pertama</label>
+  </div>
+</div>
+<div class="grid">
+  <div class="left">
+    <section id="ctl-r"><div class="chips" id="mchips" role="group" aria-label="Pilih peristiwa"></div></section>
+    <section id="ctl-n"><div class="chips" id="dchips" role="group" aria-label="Pilih hari novena"></div></section>
+    <section id="ctl-u" class="card cfg">
+      <h3>Atur doa berulang</h3>
+      <div class="chips" id="kchips" role="group" aria-label="Pilih doa">
+        <button class="chip" data-k="salam">Salam Maria</button>
+        <button class="chip" data-k="bapa">Bapa Kami</button>
+      </div>
+      <label for="n">Jumlah doa (1 sampai 150)</label>
+      <div class="row">
+        <button class="side" id="minus" aria-label="Kurangi">-</button>
+        <input id="n" type="number" min="1" max="150" value="10" inputmode="numeric">
+        <button class="side" id="plus" aria-label="Tambah">+</button>
+        <button class="chip" id="set" style="background:var(--yellow);border-color:var(--yellow-d);color:#4E3F63">Atur &amp; mulai</button>
+      </div>
+      <div class="chips" id="presets" style="margin-top:10px"><button class="chip" data-n="10">10</button><button class="chip" data-n="33">33</button><button class="chip" data-n="50">50</button><button class="chip" data-n="100">100</button><button class="chip" data-n="150">150</button></div>
+      <p class="hint">Setiap kelipatan 10 ada ucapan selamat dan warna manik berganti.</p>
+    </section>
+    <div class="card"><div id="stage"></div><div class="tot" id="tot"></div></div>
+    <div class="card" id="evcard"><h3 id="evh"></h3><ol id="ev"></ol></div>
+  </div>
+  <div class="right">
+    <div id="msg" role="status"></div>
+    <div class="card prayer" id="pr" aria-live="polite"></div>
+    <details class="card"><summary>Semua doa</summary><div id="all"></div></details>
+  </div>
+</div>
+<div class="bar">
+  <button class="side" id="prev">Kembali</button>
+  <button class="big" id="next"></button>
+  <button class="side" id="reset">Ulang</button>
+</div>
+<script>
+const P={
+tanda:["Tanda Salib","Dalam nama Bapa dan Putra dan Roh Kudus. Amin."],
+aku:["Aku Percaya","Aku percaya akan Allah, Bapa yang mahakuasa, pencipta langit dan bumi. Dan akan Yesus Kristus, Putra-Nya yang tunggal, Tuhan kita, yang dikandung dari Roh Kudus, dilahirkan oleh Perawan Maria, yang menderita sengsara dalam pemerintahan Pontius Pilatus, disalibkan, wafat, dan dimakamkan, yang turun ke tempat penantian, pada hari ketiga bangkit dari antara orang mati, naik ke surga, duduk di sebelah kanan Allah Bapa yang mahakuasa, dari situ Ia akan datang mengadili orang yang hidup dan yang mati. Aku percaya akan Roh Kudus, Gereja Katolik yang kudus, persekutuan para kudus, pengampunan dosa, kebangkitan badan, dan kehidupan kekal. Amin."],
+bapa:["Bapa Kami","Bapa kami yang ada di surga, dimuliakanlah nama-Mu, datanglah Kerajaan-Mu, jadilah kehendak-Mu di atas bumi seperti di dalam surga. Berilah kami rezeki pada hari ini, dan ampunilah kesalahan kami, seperti kami pun mengampuni yang bersalah kepada kami, dan janganlah masukkan kami ke dalam pencobaan, tetapi bebaskanlah kami dari yang jahat. Amin."],
+salam:["Salam Maria","Salam Maria, penuh rahmat, Tuhan sertamu; terpujilah engkau di antara wanita, dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah, doakanlah kami yang berdosa ini, sekarang dan waktu kami mati. Amin."],
+kem:["Kemuliaan","Kemuliaan kepada Bapa dan Putra dan Roh Kudus, seperti pada permulaan, sekarang, selalu, dan sepanjang segala abad. Amin."],
+yusuf:["Doa Maria & Santo Yusuf","Terpujilah Maria dan Santo Yusuf untuk sekarang dan selama-lamanya. Amin."],
+fatima:["Doa Fatima","Ya Yesus yang baik, ampunilah dosa-dosa kami, selamatkanlah kami dari api neraka, dan tuntunlah jiwa-jiwa ke surga, terutama jiwa-jiwa yang paling membutuhkan belas kasihan-Mu. Amin."],
+ratu:["Salam Ratu","Salam, ya Ratu, bunda yang berbelaskasih, hidup kami, hiburan kami, dan harapan kami, salam. Kepadamu kami berseru, anak-anak Hawa yang malang. Kepadamu kami mengeluh, berduka dan menangis dalam lembah air mata ini. Ya Pembela kami, pandanglah kami dengan mata belas kasihmu. Dan sesudah pembuangan ini, tunjukkanlah kepada kami Yesus, buah tubuhmu yang terberkati. Ya Maria yang pengasih, yang lembut, yang manis. Doakanlah kami, ya Santa Bunda Allah, supaya kami dapat menjadi layak akan janji-janji Kristus. Amin."],
+penutup:["Doa Penutup Rosario","Ya Allah, Putra tunggal-Mu telah menyediakan bagi kami pahala hidup kekal melalui hidup, wafat, dan kebangkitan-Nya. Kami mohon, semoga dengan merenungkan rahasia-rahasia suci Rosario ini, kami meneladan apa yang terkandung di dalamnya dan memperoleh apa yang dijanjikan. Demi Kristus, Tuhan kami. Amin."],
+tobat:["Doa Tobat","Allah yang maha rahim, aku menyesal atas dosa-dosaku. Aku sungguh patut Engkau hukum, terutama karena aku telah tidak setia kepada Engkau yang maha pengasih dan maha baik bagiku. Aku benci akan segala dosaku, dan berjanji dengan pertolongan rahmat-Mu hendak memperbaiki hidupku dan tidak akan berbuat dosa lagi. Allah yang maha murah, ampunilah aku, orang berdosa. Amin."],
+kuasa:["Novena Tiga Salam Maria: Kuasa Maria","Bunda Maria, Perawan yang berkuasa, bagimu tidak ada sesuatu yang tak mungkin, karena kuasa yang dianugerahkan oleh Tuhan Yang Maha Kuasa kepadamu. Dengan sangat aku mohon pertolonganmu dalam kesulitanku ini, janganlah hendaknya engkau meninggalkan aku, sebab aku yakin engkau pasti dapat menolong, meski dalam perkara yang sulit, yang sudah tidak ada harapannya, engkau tetap menjadi pengantara bagi Putramu.\n\nBaik keluhuran Tuhan, penghormatanku kepadamu maupun keselamatan jiwaku akan bertambah seandainya engkau sudi mengabulkan segala permohonanku ini. Karenanya, kalau permohonanku ini benar-benar sesuai dengan kehendak Putramu, dengan sangat aku mohon, o Bunda, sudilah meneruskan segala permohonanku ini ke hadirat Putramu, yang pasti tak akan menolakmu.\n\nPengharapanku yang besar ini, berdasarkan atas kuasa yang tak terbatas yang dianugerahkan oleh Allah Bapa kepadamu. Dan untuk menghormati besarnya kuasamu itu, aku berdoa bersama dengan St. Mechtildis yang kau beritahukan tentang kebaikan doa “Tiga Salam Maria”, yang sangat besar manfaatnya itu."],
+bijak:["Novena Tiga Salam Maria: Kebijaksanaan Maria","Perawan Suci yang disebut Tahta Kebijaksanaan, karena Sabda Allah tinggal padamu, engkau dianugerahi pengetahuan Ilahi yang tak terhingga oleh Putramu, sebagai makhluk yang paling sempurna untuk dapat menerimanya.\n\nEngkau tahu betapa besar kesulitan yang kuhadapi ini, betapa besar pengharapanku akan pertolonganmu. Dengan penuh kepercayaan akan tingginya kebijaksanaanmu, aku menyerahkan diri seutuhnya kepadamu, supaya engkau dapat mengatur dengan segala kesanggupan dan kebaikan budi, demi keluhuran Tuhan dan keselamatan jiwaku. Sudilah kiranya Bunda dapat menolong dengan segala cara yang paling tepat untuk terkabulnya permohonanku ini.\n\nO Maria, Bunda Kebijaksanaan Ilahi, sudilah kiranya Bunda berkenan mengabulkan permohonanku yang mendesak ini. Aku memohon berdasarkan atas kebijaksanaanmu yang tiada bandingnya, yang dikaruniakan oleh Putramu melalui Sabda Ilahi kepadamu.\n\nBersama dengan St. Antonius dari Padua dan St. Leonardus dari Porto Mauritio, yang rajin mewartakan tentang devosi “Tiga Salam Maria” aku berdoa untuk menghormati kebijaksanaanmu yang tiada taranya itu."],
+kasih:["Novena Tiga Salam Maria: Belas Kasih Maria","O Bunda yang baik dan lembut hati, Bunda Kerahiman Sejati yang akhir-akhir ini disebut sebagai “Bunda yang penuh belas kasih”, aku datang padamu, memohon dengan sangat, sudilah kiranya Bunda memperlihatkan belas kasihmu kepadaku. Makin besar kepapaanku, makin besar pula belas kasihmu kepadaku.\n\nAku tahu, bahwa aku tidak pantas mendapat karunia itu. Sebab seringkali aku menyedihkan hatimu dengan menghina Putramu yang kudus itu. Betapapun besarnya kesalahanku, namun aku sangat menyesal telah melukai Hati Kudus Yesus dan hati kudusmu.\n\nEngkau memperkenalkan diri sebagai “Bunda para pendosa yang bertobat” kepada St. Brigita, maka ampunilah kiranya segala kurang rasa terima kasihku padamu. Ingatlah akan keluhuran Putramu saja serta kerahiman dan kebaikan hatimu yang terpancar dengan mengabulkan permohonanku ini melalui perantaraan Putramu.\n\nO Bunda, Perawan yang penuh kebaikan serta lembut dan manis, belum pernah ada orang yang datang padamu dan memohon pertolonganmu engkau biarkan begitu saja. Atas kerahiman dan kebaikanmu, aku berharap dengan sangat, agar aku dianugerahi Roh Kudus. (hening sejenak dan rasakan kuasa Roh Kudus hadir dalam diri Anda) Dan demi keluhuranmu, bersama St. Alfonsus Ligouri, rasul kerahimanmu serta pengajar devosi “Tiga Salam Maria”, aku berdoa untuk menghormati kerahimanmu dan kebaikanmu."],
+mohon:["Doa Permohonan","Doa wujud permohonan Anda…\n\nBunda Maria, Bunda yang baik dan murah hati, jauhkanlah (diriku, dia, kami) dari dosa berat."],
+mohon3:["Doa Permohonan","Doa wujud permohonan Anda…\n\nBunda Maria, Bunda yang baik dan murah hati, jauhkanlah (diriku, dia, kami) dari dosa berat.\n\nAmin."],
+terpujilah:["Terpujilah","Terpujilah nama Yesus, Maria dan Yosef, sekarang dan selama-lamanya. Amin."],
+yudas:["Doa Novena Santo Yudas Tadeus","Rasul yang amat suci, Santo Yudas Tadeus, pelayan dan sahabat Yesus yang setia, Gereja Semesta menghormati dan memohon kepadamu, sebagai penolong dari masalah-masalah yang tampaknya tidak ada harapannya, hal-hal yang tidak ada jalan keluarnya. Doakanlah aku, karena aku merasa sendirian dan tidak mempunyai penolong.\n\nAku mohon padamu, gunakanlah kekuatan khusus yang diberikan kepadamu untuk memberikan padaku bantuan nyata dan sesegera mungkin disaat aku merasa bantuan itu hampir tidak ada. Dampingilah aku dalam kebutuhanku yang mendesak ini sehingga aku boleh menerima penghiburan dan bantuan Surgawi atas semua kebutuhanku, masalah dan penderitaanku, khususnya ………. (sebutkan permintaan Anda) dan sehingga aku akan memuji Tuhan bersamamu dan semua orang terpilih selamanya.\n\nAku berjanji, oh Santo Yudas Tadeus untuk selalu mengingat bantuan besar ini, untuk selalu menghormati sebagai Rasul yang istimewa dan perkasa diantara kedua belas Rasul lainnya dan untuk meningkatkan devosi kepadamu.\n\nSemoga Hati Yesus yang Mahakudus selalu dihormati, dicintai disemua Tabernakel sampai akhir zaman. Semoga Hati Yesus yang Mahakudus dihormati dan dimuliakan sekarang dan selama-lamanya.\n\nSanto Yudas Tadeus doakanlah aku dan dengarlah doaku.\nTerberkatilah Hati Kudus Yesus.\nTerberkatilah Hati Maria yang tak bernoda.\nTerberkatilah Santo Yudas Tadeus.\nDiseluruh bumi dan selalu disepanjang masa.\nAmin."]};
+const M={
+gembira:{n:"Gembira",d:"Senin & Sabtu",e:["Maria menerima kabar dari Malaikat Gabriel","Maria mengunjungi Elisabet","Yesus dilahirkan di Betlehem","Yesus dipersembahkan di Kenisah","Yesus ditemukan di Bait Allah"]},
+terang:{n:"Terang",d:"Kamis",e:["Yesus dibaptis di Sungai Yordan","Yesus menyatakan diri di Kana","Yesus mewartakan Kerajaan Allah dan mengajak bertobat","Yesus menampakkan kemuliaan-Nya","Yesus menetapkan Ekaristi"]},
+sedih:{n:"Sedih",d:"Selasa & Jumat",e:["Yesus berdoa dalam sakrat maut di Taman Zaitun","Yesus didera","Yesus dimahkotai duri","Yesus memanggul salib","Yesus wafat di kayu salib"]},
+mulia:{n:"Mulia",d:"Rabu & Minggu",e:["Yesus bangkit dari antara orang mati","Yesus naik ke surga","Roh Kudus turun atas para rasul","Maria diangkat ke surga","Maria dimahkotai di surga"]}};
+const PRO={rosario:"Rosario",tiga:"Novena Tiga Salam Maria",yudas:"Novena Santo Yudas Tadeus",ulang:"Salam Maria & Bapa Kami"};
+const SUB={tiga:"Sembilan hari, setiap hari tiga kali tiga Salam Maria.",yudas:"Sembilan hari, setiap hari satu doa novena.",ulang:"Atur jumlah doa, lalu hitung dengan manik. Maksimal 150."};
+const DAY=['mulia','gembira','sedih','mulia','terang','sedih','gembira'];
+const H=[335,48,205,150,270,20,85,175,350,235,35,190,300,110,8];
+const CHEER=["Bagus sekali!","Terus semangat!","Tuhan memberkati!"];
+const $=id=>document.getElementById(id);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let Z={prog:'rosario',mk:DAY[new Date().getDay()],i:{rosario:0,tiga:0,yudas:0,ulang:0},day:{tiga:1,yudas:1},done:{tiga:[],yudas:[]},cfg:{p:'salam',n:10}};
+try{const s=JSON.parse(localStorage.getItem('doa2')||'null');if(s)Z=Object.assign(Z,s)}catch(e){}
+if(!PRO[Z.prog])Z.prog='rosario';if(!M[Z.mk])Z.mk='gembira';Z.cfg.n=clamp(+Z.cfg.n||10,1,150);if(!P[Z.cfg.p])Z.cfg.p='salam';
+
+let S=[],B=[],medal=0,i=0,N=0,msg=null;
+const cx=180,cy=135,R=112;
+const slot=k=>{const t=Math.PI/2+k*2*Math.PI/56;return[cx+R*Math.cos(t),cy+R*Math.sin(t)]};
+function mkRosary(){
+  S=[];B=[];
+  const bead=(k,x,y,lab)=>B.push({k,x,y,lab,s:null})-1;
+  const add=(b,o)=>{o.b=b;if(B[b].s==null)B[b].s=S.length;S.push(o)};
+  bead('cross',180,378);bead('big',180,336);
+  add(0,{t:"Tanda Salib & Aku Percaya",x:["tanda","aku"]});
+  add(1,{t:"Bapa Kami",x:["bapa"]});
+  [312,295,278].forEach((y,j)=>{const b=bead('sm',180,y);add(b,{t:"Salam Maria",s:"Untuk menambah "+["iman","harapan","kasih"][j],x:["salam"],c:j+1,of:3})});
+  medal=bead('medal',180,cy+R);
+  add(medal,{t:"Kemuliaan",x:["kem","yusuf"]});
+  let sl=1;
+  for(let d=0;d<5;d++){
+    let [x,y]=slot(sl++);let b=bead('big',x,y,d+1);add(b,{t:"Bapa Kami",x:["bapa"],d});
+    for(let j=1;j<=10;j++){[x,y]=slot(sl++);b=bead('sm',x,y);add(b,{t:"Salam Maria",x:["salam"],d,c:j,of:10,end:j==10})}
+  }
+  add(medal,{t:"Salam Ratu & Doa Penutup",x:["ratu","penutup","tanda"]});
+}
+function build(){
+  const p=Z.prog;
+  if(p=='rosario')mkRosary();
+  else if(p=='tiga'){
+    S=[{t:"Tanda Salib",x:["tanda"],g:0},{t:"Syahadat Para Rasul",x:["aku"],g:0},{t:"Bapa Kami",x:["bapa"],g:0},{t:"Doa Tobat",x:["tobat"],g:0}];
+    [["kuasa","Untuk menghormati kuasa Maria",1,"mohon"],["bijak","Untuk menghormati kebijaksanaan Maria",2,"mohon"],["kasih","Untuk menghormati kerahiman dan kebaikan Maria",3,"mohon3"]].forEach(([k,sb,g,mo])=>{
+      S.push({t:P[k][0],x:[k],g});
+      for(let j=1;j<=3;j++)S.push({t:"Salam Maria",s:sb,x:["salam"],c:j,of:3,g});
+      S.push({t:"Doa Permohonan",x:[mo],g});
+    });
+    S.push({t:"Kemuliaan & Terpujilah",x:["kem","terpujilah"],g:4},{t:"Tanda Salib",x:["tanda"],g:4});
+  }else if(p=='yudas'){
+    S=[{t:"Tanda Salib",x:["tanda"],g:0},{t:"Doa Novena Santo Yudas Tadeus",x:["yudas"],g:1},{t:"Tanda Salib",x:["tanda"],g:0}];
+  }else{
+    const k=Z.cfg.p,n=Z.cfg.n;S=[];
+    for(let j=1;j<=n;j++)S.push({t:P[k][0],x:[k],c:j,of:n,g:Math.floor((j-1)/10)});
+  }
+  N=S.length;i=clamp(Z.i[p]|0,0,N);
+}
+function necklace(fin,st){
+  let g=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="var(--thread)" stroke-width="2.5"/><line x1="180" y1="${cy+R}" x2="180" y2="378" stroke="var(--thread)" stroke-width="2.5"/>`;
+  B.forEach((b,n)=>{
+    const done=fin||i>b.s,cur=!fin&&st.b==n;
+    const c=b.k=='big'?['--yellow','--yellow-d',8.5]:b.k=='sm'?['--pink','--pink-d',5.8]:['--blue','--blue-d',12];
+    const r=cur?c[2]*1.4:c[2],f=`var(${done||cur?c[1]:c[0]})`;
+    let sh;
+    if(b.k=='cross')sh=`<g transform="translate(${b.x} ${b.y})" fill="${done||cur?'var(--blue-d)':'var(--blue)'}" stroke="var(--blue-d)" stroke-width="1.5"><rect x="-5" y="-22" width="10" height="44" rx="4"/><rect x="-15" y="-11" width="30" height="10" rx="4"/></g>`;
+    else sh=`<circle cx="${b.x}" cy="${b.y}" r="${r}" fill="${f}" stroke="var(${c[1]})" stroke-width="1.5"/><circle cx="${b.x-r*.3}" cy="${b.y-r*.3}" r="${r*.26}" fill="#fff" opacity=".7"/>${b.k=='medal'?`<circle cx="${b.x}" cy="${b.y}" r="${r*.5}" fill="none" stroke="#fff" stroke-width="1.5" opacity=".8"/>`:''}${b.lab?`<text x="${b.x}" y="${b.y+3.4}" text-anchor="middle" font-size="${cur?12:9}" font-weight="800" font-family="Nunito,sans-serif" fill="#4E3F63" style="pointer-events:none">${b.lab}</text>`:''}`;
+    g+=`<g data-b="${n}">${cur?`<circle class="halo" cx="${b.x}" cy="${b.y}" r="${r+5}" fill="none" stroke="var(--blue-d)" stroke-width="3"/>`:''}${sh}</g>`;
+  });
+  return `<svg viewBox="0 0 360 410" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Kalung rosario. Ketuk manik untuk melompat.">${g}</svg>`;
+}
+const ps=t=>t.split("\n\n").map(x=>x.replace(/\n/g,"<br>"));
+const paras=k=>k.map(x=>ps(P[x][1]).map((q,n)=>`<p>${k.length>1&&n==0?`<b>${P[x][0]}.</b> `:''}${q}</p>`).join("")).join("");
+function render(){
+  const p=Z.prog,fin=i>=N,st=S[Math.min(i,N-1)],m=M[Z.mk],nov=p=='tiga'||p=='yudas';
+  const name=P[Z.cfg.p][0];
+  $('tabs').innerHTML=Object.keys(PRO).map(k=>`<button class="tab" data-p="${k}" aria-pressed="${k==p}">${PRO[k]}</button>`).join("");
+  $('day').textContent=p=='rosario'?`Peristiwa ${m.n}, biasanya didoakan hari ${m.d}.`:SUB[p];
+  $('ctl-r').hidden=p!='rosario';$('evcard').hidden=p!='rosario';$('ctl-n').hidden=!nov;$('ctl-u').hidden=p!='ulang';
+  if(p=='rosario'){
+    $('mchips').innerHTML=Object.keys(M).map(k=>`<button class="chip" data-m="${k}" aria-pressed="${k==Z.mk}">${M[k].n}</button>`).join("");
+    const cd=fin||st.d==null?-1:st.d;
+    $('evh').textContent="Peristiwa "+m.n;
+    $('ev').innerHTML=m.e.map((e,d)=>`<li><button data-d="${d}" class="${d==cd?'on':''}"><i>${d+1}</i>${e}</button></li>`).join("");
+  }
+  if(nov)$('dchips').innerHTML=[1,2,3,4,5,6,7,8,9].map(d=>`<button class="chip" data-day="${d}" aria-pressed="${d==Z.day[p]}">Hari ${d}${Z.done[p].includes(d)?' ✓':''}</button>`).join("");
+  /* stage */
+  if(p=='rosario')$('stage').innerHTML=necklace(fin,st);
+  else $('stage').innerHTML=`<div class="beads ${p=='ulang'?'g10':'fl'}">`+S.map((s,n)=>`<button class="bd ${fin||n<i?'done':''} ${!fin&&n==i?'cur':''}" style="--h:${H[s.g%15]}" data-i="${n}" aria-label="${s.t}${s.c?' ke-'+s.c:''}">${s.c?(p=='ulang'?n+1:s.c):''}</button>`).join("")+`</div>`;
+  const sm=S.slice(0,i).filter(s=>s.c&&s.t=="Salam Maria").length;
+  $('tot').textContent=p=='rosario'?`Salam Maria: ${sm} dari 53`:p=='ulang'?`${Math.min(i,N)} dari ${N} ${name}`:`Langkah ${Math.min(i+1,N)} dari ${N}`;
+  /* message */
+  let mh="";
+  if(msg)mh=`<div class="msg">${msg.t}<span>${msg.s||""}</span></div>`;
+  if(fin){
+    let t,s;
+    if(p=='rosario'){t="Amin. Rosario selesai.";s="Terima kasih sudah berdoa. Semoga damai menyertai Anda."}
+    else if(p=='ulang'){t=`Selamat! ${N} ${name} selesai.`;s="Terpujilah Tuhan. Anda bisa mengulang atau mengatur jumlah baru."}
+    else if(Z.done[p].length>=9){t="Selamat! Novena 9 hari selesai.";s="Semoga doa-doa Anda didengar."}
+    else{t=`Hari ke-${Z.day[p]} selesai.`;s=`Sudah ${Z.done[p].length} dari 9 hari. Teruskan besok.`}
+    if(tnow()>0&&!T.done)s+=` Waktu doa: ${tfmt(tnow(),'up')}.`;
+    mh=`<div class="msg fin">🎉 ${t}<span>${s}</span></div>`;
+  }
+  $('msg').innerHTML=mh;
+  /* prayer */
+  let h="";
+  if(fin)h=`<h2>Amin.</h2>${p=='rosario'?'':'<p>Tekan tombol untuk lanjut.</p>'}`;
+  else{
+    if(p=='rosario'&&st.d!=null)h+=`<div class="event">Peristiwa ke-${st.d+1} ${m.n}<span>${m.e[st.d]}</span></div>`;
+    h+=`<h2>${st.t}</h2>`;
+    if(st.s)h+=`<p class="sub">${st.s}</p>`;
+    if(st.c)h+=`<p class="sub">${st.t} ke-${st.c} dari ${st.of}</p>`;
+    h+=paras(st.x);
+    if(st.end)h+=`<div class="after"><b>Setelah manik ke-10</b>${paras(["kem","yusuf","fatima"])}</div>`;
+  }
+  $('pr').innerHTML=h;
+  /* bar */
+  $('next').innerHTML=fin?`<span class="l">${p=='rosario'||p=='ulang'?'Mulai lagi':'Hari berikutnya'}</span>`:st.c?`<span class="n">${st.c}</span><span class="l">${st.t}</span><span class="m">ketuk, lanjut</span>`:`<span class="l">Lanjut</span><span class="m">ketuk</span>`;
+  $('next').setAttribute('aria-label',fin?'Mulai lagi':'Manik berikutnya');
+  $('prev').disabled=i==0;
+  try{localStorage.setItem('doa2',JSON.stringify(Z))}catch(e){}
+}
+function syncCfg(){
+  $('n').value=Z.cfg.n;
+  document.querySelectorAll('#kchips .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==Z.cfg.p));
+  document.querySelectorAll('#presets .chip').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n==Z.cfg.n));
+}
+function applyCfg(n){
+  Z.cfg.n=clamp(parseInt(n!=null?n:$('n').value)||1,1,150);Z.i.ulang=0;msg=null;
+  if(Z.prog=='ulang')build();syncCfg();render();
+}
+function setProg(p){treset();Z.prog=p;msg=null;build();syncCfg();render()}
+function go(n){i=clamp(n,0,N);Z.i[Z.prog]=i;msg=null;render()}
+const buzz=()=>{try{navigator.vibrate&&navigator.vibrate(12)}catch(e){}};
+function adv(){
+  const p=Z.prog;buzz();
+  if(i>=N){
+    msg=null;
+    if(Z.done[p]){const nx=[1,2,3,4,5,6,7,8,9].find(d=>!Z.done[p].includes(d));Z.day[p]=nx||1;if(!nx)Z.done[p]=[]}
+    i=0;treset();
+  }else{
+    const st=S[i];msg=null;if(T.auto&&!T.run&&tnow()==0)tstart();i++;
+    if(st.end)msg={t:`Peristiwa ke-${st.d+1} selesai 🌸`,s:M[Z.mk].e[st.d]};
+    else if(p=='ulang'&&st.c%10==0&&i<N)msg={t:`🎉 Selamat! ${st.c} ${P[Z.cfg.p][0]} selesai`,s:`${CHEER[(st.c/10)%3]} Warna manik berganti, tinggal ${N-st.c} lagi.`};
+    if(i>=N&&Z.done[p]&&!Z.done[p].includes(Z.day[p]))Z.done[p].push(Z.day[p]);
+    if(i>=N&&T.run)tpause();
+  }
+  Z.i[p]=i;render();
+}
+$('next').onclick=adv;
+$('prev').onclick=()=>go(i-1);
+$('reset').onclick=()=>{treset();go(0)};
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-p],[data-m],[data-day],[data-b],[data-i],[data-d],[data-k],#presets [data-n]');if(!t)return;
+  const d=t.dataset;
+  if(d.p)setProg(d.p);
+  else if(d.m){Z.mk=d.m;render()}
+  else if(d.day){Z.day[Z.prog]=+d.day;go(0)}
+  else if(d.b!=null){const b=B[+d.b];go(b.k=='medal'?B[medal].s:b.s)}
+  else if(d.i!=null)go(+d.i);
+  else if(d.d!=null)go(S.findIndex(s=>s.d===+d.d&&!s.c));
+  else if(d.k){Z.cfg.p=d.k;applyCfg()}
+  else if(d.n)applyCfg(+d.n);
+});
+$('set').onclick=()=>applyCfg();
+$('minus').onclick=()=>{$('n').value=clamp((parseInt($('n').value)||1)-1,1,150)};
+$('plus').onclick=()=>{$('n').value=clamp((parseInt($('n').value)||0)+1,1,150)};
+$('n').addEventListener('keydown',e=>{if(e.key=='Enter')applyCfg()});
+document.addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;if(e.key=='ArrowRight')go(i+1);else if(e.key=='ArrowLeft')go(i-1)});
+$('all').innerHTML=Object.keys(P).map(k=>`<h3>${P[k][0]}</h3>${ps(P[k][1]).map(q=>`<p>${q}</p>`).join("")}`).join("");
+/* timer */
+const T={mode:'up',run:false,acc:0,t0:0,min:10,auto:true,done:false,iv:null};
+const tnow=()=>T.acc+(T.run?Date.now()-T.t0:0);
+function tfmt(ms,mode){const t=mode=='down'?Math.ceil(ms/1000):Math.floor(ms/1000),h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60,z=n=>String(n).padStart(2,'0');return (h?h+':':'')+z(m)+':'+z(s)}
+function tdraw(){
+  const ms=tnow();
+  $('tm').textContent=T.mode=='down'?tfmt(Math.max(0,T.min*60000-ms),'down'):tfmt(ms,'up');
+  $('tgo').textContent=T.run?'Jeda':ms>0&&!T.done?'Lanjut':'Mulai';
+  document.querySelectorAll('[data-tm]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.tm==T.mode));
+  $('tset').hidden=T.mode!='down';
+}
+function tstart(){if(T.run)return;if(T.done)treset();T.t0=Date.now();T.run=true;T.iv=setInterval(ttick,250);tdraw()}
+function tpause(){if(!T.run)return;T.acc+=Date.now()-T.t0;T.run=false;clearInterval(T.iv);tdraw()}
+function treset(){T.run=false;T.acc=0;T.done=false;clearInterval(T.iv);tdraw()}
+function chime(){try{const C=new (window.AudioContext||window.webkitAudioContext)();[660,880,990].forEach((f,k)=>{const o=C.createOscillator(),g=C.createGain();o.type='sine';o.frequency.value=f;o.connect(g);g.connect(C.destination);const t=C.currentTime+k*.35;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.6);o.start(t);o.stop(t+.65)})}catch(e){}try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}}
+function ttick(){
+  if(T.mode=='down'&&tnow()>=T.min*60000&&!T.done){
+    tpause();T.acc=T.min*60000;T.done=true;chime();
+    msg={t:"⏰ Waktu habis",s:`Timer ${T.min} menit selesai. Lanjutkan doa sebentar atau tekan Reset.`};render();
+  }
+  tdraw();
+}
+$('tgo').onclick=()=>T.run?tpause():tstart();
+$('trs').onclick=treset;
+$('tauto').onchange=e=>{T.auto=e.target.checked};
+$('tmin').onchange=e=>{T.min=clamp(parseInt(e.target.value)||10,1,180);e.target.value=T.min;if(!T.run)treset()};
+document.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{T.mode=b.dataset.tm;treset()});
+tdraw();
+build();syncCfg();render();
+</script>
+</body>
+</html>
